@@ -1,0 +1,72 @@
+{
+  "version": "1.0",
+  "description": "NL2Metrics 首批真实规划评估。检查具体商品汇总、日趋势和等长期间对比。",
+  "cases": [
+    {
+      "id": "product_overview_egg_30d",
+      "question": "鸡蛋最近30天卖得怎么样？",
+      "expected": {
+        "decision": "execute",
+        "tool": "query_metrics",
+        "arguments": {
+          "metrics": [
+            "sales_amount",
+            "sales_quantity",
+            "receipt_count",
+            "average_receipt_amount",
+            "average_selling_price"
+          ],
+          "dimension": null,
+          "filters": {"product_query": "鸡蛋", "category": null},
+          "start_date": "2026-08-21",
+          "end_date": "2026-09-19",
+          "allow_partial_end_date": false,
+          "comparison": "none",
+          "order_by": null,
+          "order_direction": "desc",
+          "limit": 1
+        }
+      }
+    },
+    {
+      "id": "product_daily_quantity_egg_7d",
+      "question": "鸡蛋最近7天每天销量是多少？",
+      "expected": {
+        "decision": "execute",
+        "tool": "query_metrics",
+        "arguments": {
+          "metrics": ["sales_quantity"],
+          "dimension": "day",
+          "filters": {"product_query": "鸡蛋", "category": null},
+          "start_date": "2026-09-13",
+          "end_date": "2026-09-19",
+          "allow_partial_end_date": false,
+          "comparison": "none",
+          "order_by": null,
+          "order_direction": "desc",
+          "limit": 7
+        }
+      }
+    },
+    {
+      "id": "product_sales_comparison_egg_7d",
+      "question": "鸡蛋最近7天和此前7天的销售额对比",
+      "expected": {
+        "decision": "execute",
+        "tool": "query_metrics",
+        "arguments": {
+          "metrics": ["sales_amount"],
+          "dimension": null,
+          "filters": {"product_query": "鸡蛋", "category": null},
+          "start_date": "2026-09-13",
+          "end_date": "2026-09-19",
+          "allow_partial_end_date": false,
+          "comparison": "previous_period",
+          "order_by": null,
+          "order_direction": "desc",
+          "limit": 1
+        }
+      }
+    }
+  ]
+}

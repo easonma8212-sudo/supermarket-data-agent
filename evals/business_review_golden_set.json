@@ -1,0 +1,8 @@
+{
+  "version": "1.0",
+  "description": "经营分析 Skill 的路由基准，日期固定为现有数据快照。",
+  "cases": [
+    {"id":"business_overview", "question":"最近一周生意怎么样？帮我分析变化体现在哪些类别和商品。", "expected":{"decision":"execute","tool":"run_business_review","arguments":{"start_date":"2026-09-13","end_date":"2026-09-19"}}},
+    {"id":"business_period", "question":"分析2026年9月1日至9月7日全店经营表现，与此前等长期间比较，拆解类别和商品的销售额变化。", "expected":{"decision":"execute","tool":"run_business_review","arguments":{"start_date":"2026-09-01","end_date":"2026-09-07"}}}
+  ]
+}

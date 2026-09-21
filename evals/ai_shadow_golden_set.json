@@ -1,0 +1,132 @@
+{
+  "version": "1.0",
+  "description": "AI 影子规划器首批评估集。只检查决策、工具和参数，不执行数据库工具。相对日期基于数据最新完整日 2026-09-19。",
+  "cases": [
+    {
+      "id": "explicit_top_products",
+      "question": "最近30天按销量排前5名商品",
+      "expected": {
+        "decision": "execute",
+        "tool": "query_top_products",
+        "arguments": {
+          "start_date": "2026-08-21",
+          "end_date": "2026-09-19",
+          "limit": 5,
+          "sort_by": "sales_quantity",
+          "category": null
+        }
+      }
+    },
+    {
+      "id": "default_top_products",
+      "question": "最近哪些商品卖得最好？",
+      "expected": {
+        "decision": "execute",
+        "tool": "query_top_products",
+        "arguments": {
+          "start_date": "2026-09-13",
+          "end_date": "2026-09-19",
+          "limit": 10,
+          "sort_by": "sales_amount",
+          "category": null
+        }
+      }
+    },
+    {
+      "id": "explicit_sales_period",
+      "question": "2026年9月1日到9月7日销售额、销量和小票数是多少？",
+      "expected": {
+        "decision": "execute",
+        "tool": "query_sales_summary",
+        "arguments": {
+          "start_date": "2026-09-01",
+          "end_date": "2026-09-07",
+          "allow_partial_end_date": false
+        }
+      }
+    },
+    {
+      "id": "category_filter",
+      "question": "最近7天只看饮料类，按销售额排前3名商品",
+      "expected": {
+        "decision": "execute",
+        "tool": "query_top_products",
+        "arguments": {
+          "start_date": "2026-09-13",
+          "end_date": "2026-09-19",
+          "limit": 3,
+          "sort_by": "sales_amount",
+          "category": "饮料"
+        }
+      }
+    },
+    {
+      "id": "kpi_two_weeks",
+      "question": "最近两周客单价和小票数对比",
+      "expected": {
+        "decision": "execute",
+        "tool": "query_kpi_comparison",
+        "arguments": {
+          "current_start_date": "2026-09-13",
+          "current_end_date": "2026-09-19",
+          "previous_start_date": "2026-09-06",
+          "previous_end_date": "2026-09-12"
+        }
+      }
+    },
+    {
+      "id": "falling_products",
+      "question": "最近7天哪些商品销量下降最多？",
+      "expected": {
+        "decision": "execute",
+        "tool": "query_product_sales_change",
+        "arguments": {
+          "current_start_date": "2026-09-13",
+          "current_end_date": "2026-09-19",
+          "previous_start_date": "2026-09-06",
+          "previous_end_date": "2026-09-12",
+          "limit": 5,
+          "direction": "down",
+          "category": null
+        }
+      }
+    },
+    {
+      "id": "category_contribution",
+      "question": "最近7天类别销售贡献前5名",
+      "expected": {
+        "decision": "execute",
+        "tool": "query_category_contribution",
+        "arguments": {
+          "start_date": "2026-09-13",
+          "end_date": "2026-09-19",
+          "limit": 5
+        }
+      }
+    },
+    {
+      "id": "ambiguous_comparison",
+      "question": "和以前比怎么样？",
+      "expected": {
+        "decision": "clarify",
+        "tool": "request_clarification"
+      }
+    },
+    {
+      "id": "unsupported_inventory",
+      "question": "帮我查一下库存异常",
+      "expected": {
+        "decision": "refuse",
+        "tool": "refuse_request"
+      }
+    },
+    {
+      "id": "unsupported_profit",
+      "question": "最近7天利润和毛利率是多少？",
+      "expected": {
+        "decision": "refuse",
+        "tool": "refuse_request"
+      }
+    }
+  ]
+}

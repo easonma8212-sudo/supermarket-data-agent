@@ -1,0 +1,192 @@
+{
+  "version": "1.0",
+  "description": "超市经营问答首批 Golden Set。意图测试始终可运行；live=true 的案例还用于核对当前 POS 数据快照的真实答案。",
+  "dataset_snapshot": {
+    "database": "supermarket_agent",
+    "earliest_date": "2026-06-29",
+    "latest_timestamp": "2026-09-20 13:08:06",
+    "latest_complete_date": "2026-09-19",
+    "sales_line_count": 8223
+  },
+  "cases": [
+    {
+      "id": "sales_summary_01",
+      "question": "今天、昨天和本周销售额是多少？",
+      "expected_intent": "sales_summary",
+      "live": true,
+      "expected_contains": [
+        "最新日期（部分日）（2026-09-20）：销售额 350.10 元",
+        "最近完整日（2026-09-19）：销售额 891.00 元",
+        "最新数据所在周（2026-09-14 至 2026-09-20）：销售额 5,242.70 元"
+      ]
+    },
+    {
+      "id": "sales_summary_02",
+      "question": "今天卖了多少钱？",
+      "expected_intent": "sales_summary"
+    },
+    {
+      "id": "sales_summary_03",
+      "question": "昨天营业额怎么样？",
+      "expected_intent": "sales_summary"
+    },
+    {
+      "id": "sales_summary_04",
+      "question": "本周一共卖了多少？",
+      "expected_intent": "sales_summary"
+    },
+    {
+      "id": "sales_summary_05",
+      "question": "这周生意怎么样？",
+      "expected_intent": "sales_summary"
+    },
+    {
+      "id": "top_products_01",
+      "question": "最近哪些商品卖得最好？",
+      "expected_intent": "top_products",
+      "live": true,
+      "expected_contains": [
+        "最近完整7天畅销商品（截止 2026-09-19，按销售额）",
+        "鸡蛋（00110，鸡鱼肉蛋）：527.10 元",
+        "古井贡酒V6白酒40.6度500ml*4（2722，预置类）：320.00 元"
+      ]
+    },
+    {
+      "id": "top_products_02",
+      "question": "最近的热销商品有哪些？",
+      "expected_intent": "top_products"
+    },
+    {
+      "id": "top_products_03",
+      "question": "销售额最高的商品是什么？",
+      "expected_intent": "top_products"
+    },
+    {
+      "id": "top_products_04",
+      "question": "给我看商品销售排行",
+      "expected_intent": "top_products"
+    },
+    {
+      "id": "top_products_05",
+      "question": "前十名商品有哪些？",
+      "expected_intent": "top_products"
+    },
+    {
+      "id": "product_change_01",
+      "question": "哪些商品销量明显上升或下降？",
+      "expected_intent": "product_change",
+      "live": true,
+      "expected_contains": [
+        "最近完整7天与此前7天的商品销量变化（截止 2026-09-19）",
+        "鸡蛋（00110）：44.41 → 90.45，变化 46.04",
+        "土豆（00030）：18.39 → 4.45，变化 -13.94"
+      ]
+    },
+    {
+      "id": "product_change_02",
+      "question": "哪些商品销量增长了？",
+      "expected_intent": "product_change"
+    },
+    {
+      "id": "product_change_03",
+      "question": "哪些货最近卖少了？",
+      "expected_intent": "product_change"
+    },
+    {
+      "id": "product_change_04",
+      "question": "商品销售趋势怎么样？",
+      "expected_intent": "product_change"
+    },
+    {
+      "id": "product_change_05",
+      "question": "前后两周商品销量对比",
+      "expected_intent": "product_change"
+    },
+    {
+      "id": "category_contribution_01",
+      "question": "哪些类别贡献最多？",
+      "expected_intent": "category_contribution",
+      "live": true,
+      "expected_contains": [
+        "最近完整7天类别销售贡献（截止 2026-09-19）",
+        "预置类：2,157.40 元，占 38.7%",
+        "香烟：724.00 元，占 13.0%"
+      ]
+    },
+    {
+      "id": "category_contribution_02",
+      "question": "品类销售占比是多少？",
+      "expected_intent": "category_contribution"
+    },
+    {
+      "id": "category_contribution_03",
+      "question": "什么类型卖得多？",
+      "expected_intent": "category_contribution"
+    },
+    {
+      "id": "category_contribution_04",
+      "question": "各分类销售情况",
+      "expected_intent": "category_contribution"
+    },
+    {
+      "id": "category_contribution_05",
+      "question": "大类贡献率排行",
+      "expected_intent": "category_contribution"
+    },
+    {
+      "id": "kpi_change_01",
+      "question": "客单价和订单量如何变化？",
+      "expected_intent": "kpi_change",
+      "live": true,
+      "expected_contains": [
+        "最近完整7天（2026-09-13 至 2026-09-19）：小票 367 张，客单价 15.17 元",
+        "此前7天（2026-09-06 至 2026-09-12）：小票 352 张，客单价 13.53 元"
+      ]
+    },
+    {
+      "id": "kpi_change_02",
+      "question": "客单价最近有什么变化？",
+      "expected_intent": "kpi_change"
+    },
+    {
+      "id": "kpi_change_03",
+      "question": "小票数增长了吗？",
+      "expected_intent": "kpi_change"
+    },
+    {
+      "id": "kpi_change_04",
+      "question": "最近两周客单价对比",
+      "expected_intent": "kpi_change"
+    },
+    {
+      "id": "kpi_change_05",
+      "question": "生意变化是客单价还是订单数带动的？",
+      "expected_intent": "kpi_change"
+    },
+    {
+      "id": "unsupported_01",
+      "question": "帮我查一下库存异常",
+      "expected_intent": "unsupported"
+    },
+    {
+      "id": "unsupported_02",
+      "question": "哪些商品应该补货？",
+      "expected_intent": "unsupported"
+    },
+    {
+      "id": "unsupported_03",
+      "question": "今天利润是多少？",
+      "expected_intent": "unsupported"
+    },
+    {
+      "id": "unsupported_04",
+      "question": "最近销售为什么下降？",
+      "expected_intent": "unsupported"
+    },
+    {
+      "id": "unsupported_05",
+      "question": "预测一下明天销售额",
+      "expected_intent": "unsupported"
+    }
+  ]
+}

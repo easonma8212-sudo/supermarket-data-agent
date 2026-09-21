@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <script>
+      if (window.location.protocol === "file:") {
+        window.location.replace("http://127.0.0.1:8765/");
+      }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="连接本机经营数据库的超市经营问答助手" />
+    <meta name="theme-color" content="#071914" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23071914'/%3E%3Cpath d='M17 21h30l-3 19H21z' fill='%23c9f65b'/%3E%3Cpath d='M23 17h18M25 46h1M39 46h1' stroke='%23f6f8f3' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
+    <title>超市经营助手</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/report.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">营</div>
+          <div>
+            <strong>经营助手</strong>
+            <span>LLM 受控只读分析</span>
+          </div>
+        </div>
+
+        <section class="data-card" aria-labelledby="data-status-title">
+          <div class="eyebrow" id="data-status-title">数据状态</div>
+          <div class="status-row">
+            <span class="status-dot" id="status-dot" aria-hidden="true"></span>
+            <strong id="status-label">正在连接</strong>
+          </div>
+          <p id="data-range">正在读取本机数据库…</p>
+        </section>
+
+        <nav class="suggestions" aria-label="示例问题">
+          <div class="eyebrow">可以这样问</div>
+          <button type="button" data-question="最近一周生意怎么样？帮我分析销售变化主要体现在哪些类别和商品。">经营分析报告</button>
+          <button type="button" data-question="鸡蛋最近30天卖得怎么样？">鸡蛋30天概览</button>
+          <button type="button" data-question="鸡蛋最近7天每天销量是多少？">鸡蛋每日销量</button>
+          <button type="button" data-question="鸡蛋最近7天和此前7天的销售额对比">鸡蛋前期对比</button>
+          <button type="button" data-question="牛奶最近7天销售额是多少？">牛奶商品匹配</button>
+          <button type="button" data-question="最近7天只看饮料类，按销售额排前3名商品">饮料销售前三名</button>
+          <button type="button" data-question="最近7天哪些商品销量下降最多？">商品销量下降</button>
+        </nav>
+
+        <p class="privacy-note">经营问题和必要的语义计划上下文发送给已配置的 LLM；销售明细和查询结果留在本机，不写回 POS，也不会自动采购。</p>
+      </aside>
+
+      <main class="chat-panel">
+        <header class="chat-header">
+          <div>
+            <div class="eyebrow">销售经营分析</div>
+            <h1>今天想了解什么？</h1>
+          </div>
+          <button class="clear-button" id="clear-chat" type="button">清空对话</button>
+        </header>
+
+        <section class="messages" id="messages" aria-live="polite" aria-label="对话内容">
+          <article class="message assistant-message">
+            <div class="avatar" aria-hidden="true">AI</div>
+            <div class="message-body">
+              <p>你好，我会理解你的经营问题，再调用经过批准的只读工具查询本机数据。</p>
+              <p class="message-meta">支持多轮追问；LLM 不直接访问数据库，也不能生成任意 SQL，经营数字由固定程序输出。</p>
+            </div>
+          </article>
+        </section>
+
+        <form class="composer" id="chat-form">
+          <label class="sr-only" for="question">输入经营问题</label>
+          <textarea id="question" rows="1" maxlength="500" placeholder="例如：这周生意怎么样？"></textarea>
+          <button id="send-button" type="submit" aria-label="发送问题">
+            <span>发送</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 14-7-4 14-3-6-7-1Z"/><path d="m12 13 7-8"/></svg>
+          </button>
+          <p>Enter 发送 · Shift + Enter 换行</p>
+        </form>
+      </main>
+    </div>
+    <script src="/report.js" defer></script>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
